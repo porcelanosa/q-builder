@@ -1,0 +1,7 @@
+query GetGuizesListQuery($userUid: String!) {
+    quiz(where: {user_uid: {_eq: $userUid}}) {
+        id
+        name
+        title
+    }
+}

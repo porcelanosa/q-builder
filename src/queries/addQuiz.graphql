@@ -1,0 +1,5 @@
+mutation addQuiz($quiz: quiz_insert_input!) {
+  insert_quiz_one(object: $quiz){
+    id
+  }
+}

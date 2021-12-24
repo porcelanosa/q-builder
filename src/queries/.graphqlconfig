@@ -1,0 +1,16 @@
+{
+  "name": "Untitled GraphQL Schema",
+  "schemaPath": "schema.graphql",
+  "extensions": {
+    "endpoints": {
+      "Default GraphQL Endpoint": {
+        "url": "https://quiz-builder.hasura.app/v1/graphql",
+        "headers": {
+          "content-type": "application/json",
+          "x-hasura-admin-secret": "${env:TOKEN}"
+        },
+        "introspect": true
+      }
+    }
+  }
+}

@@ -6,7 +6,7 @@ export default createStore({
     userEmail: null
   },
   getters: {
-    GET_USER_UID (state) { return state.userUid; },
+    GET_USER_UID (state) : String | null { return state.userUid; },
     GET_USER_EMAIL (state) { return state.userEmail; }
   },
   actions: {

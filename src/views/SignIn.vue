@@ -19,7 +19,6 @@ const signIn = () => {
   signInWithEmailAndPassword(auth, email.value, password.value)
     .then(({ user }) => {
       const info = user.reloadUserInfo;
-      console.log('Successfully Sign IN!', user);
       store.dispatch('SET_USER_UID_ACTION', { userUid: info.localId });
       store.dispatch('SET_USER_EMAIL_ACTION', { userEmail: info.email });
       router.push({ name: 'home' }); // redirect to the home

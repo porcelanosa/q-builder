@@ -1,0 +1,1329 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: query_root
+    mutation: mutation_root
+    subscription: subscription_root
+}
+
+"whether this query should be cached (Hasura Cloud only)"
+directive @cached(
+    "refresh the cache entry"
+    refresh: Boolean! = false,
+    "measured in seconds"
+    ttl: Int! = 60
+) on QUERY
+
+"columns and relationships of \"answer\""
+type answer {
+    id: Int!
+    image: String
+    is_right: Int
+    "An object relationship"
+    question: question
+    question_id: Int!
+    question_quiz_id: Int!
+    title: String
+}
+
+"aggregated selection of \"answer\""
+type answer_aggregate {
+    aggregate: answer_aggregate_fields
+    nodes: [answer!]!
+}
+
+"aggregate fields of \"answer\""
+type answer_aggregate_fields {
+    avg: answer_avg_fields
+    count(columns: [answer_select_column!], distinct: Boolean): Int!
+    max: answer_max_fields
+    min: answer_min_fields
+    stddev: answer_stddev_fields
+    stddev_pop: answer_stddev_pop_fields
+    stddev_samp: answer_stddev_samp_fields
+    sum: answer_sum_fields
+    var_pop: answer_var_pop_fields
+    var_samp: answer_var_samp_fields
+    variance: answer_variance_fields
+}
+
+"aggregate avg on columns"
+type answer_avg_fields {
+    id: Float
+    is_right: Float
+    question_id: Float
+    question_quiz_id: Float
+}
+
+"aggregate max on columns"
+type answer_max_fields {
+    id: Int
+    image: String
+    is_right: Int
+    question_id: Int
+    question_quiz_id: Int
+    title: String
+}
+
+"aggregate min on columns"
+type answer_min_fields {
+    id: Int
+    image: String
+    is_right: Int
+    question_id: Int
+    question_quiz_id: Int
+    title: String
+}
+
+"response of any mutation on the table \"answer\""
+type answer_mutation_response {
+    "number of rows affected by the mutation"
+    affected_rows: Int!
+    "data from the rows affected by the mutation"
+    returning: [answer!]!
+}
+
+"aggregate stddev on columns"
+type answer_stddev_fields {
+    id: Float
+    is_right: Float
+    question_id: Float
+    question_quiz_id: Float
+}
+
+"aggregate stddev_pop on columns"
+type answer_stddev_pop_fields {
+    id: Float
+    is_right: Float
+    question_id: Float
+    question_quiz_id: Float
+}
+
+"aggregate stddev_samp on columns"
+type answer_stddev_samp_fields {
+    id: Float
+    is_right: Float
+    question_id: Float
+    question_quiz_id: Float
+}
+
+"aggregate sum on columns"
+type answer_sum_fields {
+    id: Int
+    is_right: Int
+    question_id: Int
+    question_quiz_id: Int
+}
+
+"aggregate var_pop on columns"
+type answer_var_pop_fields {
+    id: Float
+    is_right: Float
+    question_id: Float
+    question_quiz_id: Float
+}
+
+"aggregate var_samp on columns"
+type answer_var_samp_fields {
+    id: Float
+    is_right: Float
+    question_id: Float
+    question_quiz_id: Float
+}
+
+"aggregate variance on columns"
+type answer_variance_fields {
+    id: Float
+    is_right: Float
+    question_id: Float
+    question_quiz_id: Float
+}
+
+"mutation root"
+type mutation_root {
+    "delete data from the table: \"answer\""
+    delete_answer(
+        "filter the rows which have to be deleted"
+        where: answer_bool_exp!
+    ): answer_mutation_response
+    "delete single row from the table: \"answer\""
+    delete_answer_by_pk(id: Int!, question_id: Int!, question_quiz_id: Int!): answer
+    "delete data from the table: \"question\""
+    delete_question(
+        "filter the rows which have to be deleted"
+        where: question_bool_exp!
+    ): question_mutation_response
+    "delete single row from the table: \"question\""
+    delete_question_by_pk(id: Int!, quiz_id: Int!): question
+    "delete data from the table: \"quiz\""
+    delete_quiz(
+        "filter the rows which have to be deleted"
+        where: quiz_bool_exp!
+    ): quiz_mutation_response
+    "delete single row from the table: \"quiz\""
+    delete_quiz_by_pk(id: Int!): quiz
+    "insert data into the table: \"answer\""
+    insert_answer(
+        "the rows to be inserted"
+        objects: [answer_insert_input!]!,
+        "on conflict condition"
+        on_conflict: answer_on_conflict
+    ): answer_mutation_response
+    "insert a single row into the table: \"answer\""
+    insert_answer_one(
+        "the row to be inserted"
+        object: answer_insert_input!,
+        "on conflict condition"
+        on_conflict: answer_on_conflict
+    ): answer
+    "insert data into the table: \"question\""
+    insert_question(
+        "the rows to be inserted"
+        objects: [question_insert_input!]!,
+        "on conflict condition"
+        on_conflict: question_on_conflict
+    ): question_mutation_response
+    "insert a single row into the table: \"question\""
+    insert_question_one(
+        "the row to be inserted"
+        object: question_insert_input!,
+        "on conflict condition"
+        on_conflict: question_on_conflict
+    ): question
+    "insert data into the table: \"quiz\""
+    insert_quiz(
+        "the rows to be inserted"
+        objects: [quiz_insert_input!]!,
+        "on conflict condition"
+        on_conflict: quiz_on_conflict
+    ): quiz_mutation_response
+    "insert a single row into the table: \"quiz\""
+    insert_quiz_one(
+        "the row to be inserted"
+        object: quiz_insert_input!,
+        "on conflict condition"
+        on_conflict: quiz_on_conflict
+    ): quiz
+    "update data of the table: \"answer\""
+    update_answer(
+        "increments the numeric columns with given value of the filtered values"
+        _inc: answer_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: answer_set_input,
+        "filter the rows which have to be updated"
+        where: answer_bool_exp!
+    ): answer_mutation_response
+    "update single row of the table: \"answer\""
+    update_answer_by_pk(
+        "increments the numeric columns with given value of the filtered values"
+        _inc: answer_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: answer_set_input,
+        pk_columns: answer_pk_columns_input!
+    ): answer
+    "update data of the table: \"question\""
+    update_question(
+        "increments the numeric columns with given value of the filtered values"
+        _inc: question_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: question_set_input,
+        "filter the rows which have to be updated"
+        where: question_bool_exp!
+    ): question_mutation_response
+    "update single row of the table: \"question\""
+    update_question_by_pk(
+        "increments the numeric columns with given value of the filtered values"
+        _inc: question_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: question_set_input,
+        pk_columns: question_pk_columns_input!
+    ): question
+    "update data of the table: \"quiz\""
+    update_quiz(
+        "increments the numeric columns with given value of the filtered values"
+        _inc: quiz_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: quiz_set_input,
+        "filter the rows which have to be updated"
+        where: quiz_bool_exp!
+    ): quiz_mutation_response
+    "update single row of the table: \"quiz\""
+    update_quiz_by_pk(
+        "increments the numeric columns with given value of the filtered values"
+        _inc: quiz_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: quiz_set_input,
+        pk_columns: quiz_pk_columns_input!
+    ): quiz
+}
+
+type query_root {
+    "fetch data from the table: \"answer\""
+    answer(
+        "distinct select on columns"
+        distinct_on: [answer_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [answer_order_by!],
+        "filter the rows returned"
+        where: answer_bool_exp
+    ): [answer!]!
+    "fetch aggregated fields from the table: \"answer\""
+    answer_aggregate(
+        "distinct select on columns"
+        distinct_on: [answer_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [answer_order_by!],
+        "filter the rows returned"
+        where: answer_bool_exp
+    ): answer_aggregate!
+    "fetch data from the table: \"answer\" using primary key columns"
+    answer_by_pk(id: Int!, question_id: Int!, question_quiz_id: Int!): answer
+    "fetch data from the table: \"question\""
+    question(
+        "distinct select on columns"
+        distinct_on: [question_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [question_order_by!],
+        "filter the rows returned"
+        where: question_bool_exp
+    ): [question!]!
+    "fetch aggregated fields from the table: \"question\""
+    question_aggregate(
+        "distinct select on columns"
+        distinct_on: [question_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [question_order_by!],
+        "filter the rows returned"
+        where: question_bool_exp
+    ): question_aggregate!
+    "fetch data from the table: \"question\" using primary key columns"
+    question_by_pk(id: Int!, quiz_id: Int!): question
+    "fetch data from the table: \"quiz\""
+    quiz(
+        "distinct select on columns"
+        distinct_on: [quiz_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [quiz_order_by!],
+        "filter the rows returned"
+        where: quiz_bool_exp
+    ): [quiz!]!
+    "fetch aggregated fields from the table: \"quiz\""
+    quiz_aggregate(
+        "distinct select on columns"
+        distinct_on: [quiz_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [quiz_order_by!],
+        "filter the rows returned"
+        where: quiz_bool_exp
+    ): quiz_aggregate!
+    "fetch data from the table: \"quiz\" using primary key columns"
+    quiz_by_pk(id: Int!): quiz
+}
+
+"columns and relationships of \"question\""
+type question {
+    active: Int
+    "An array relationship"
+    answers(
+        "distinct select on columns"
+        distinct_on: [answer_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [answer_order_by!],
+        "filter the rows returned"
+        where: answer_bool_exp
+    ): [answer!]!
+    "An aggregate relationship"
+    answers_aggregate(
+        "distinct select on columns"
+        distinct_on: [answer_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [answer_order_by!],
+        "filter the rows returned"
+        where: answer_bool_exp
+    ): answer_aggregate!
+    id: Int!
+    image: String
+    "An object relationship"
+    quiz: quiz!
+    quiz_id: Int!
+    sort: Int
+    title: String
+}
+
+"aggregated selection of \"question\""
+type question_aggregate {
+    aggregate: question_aggregate_fields
+    nodes: [question!]!
+}
+
+"aggregate fields of \"question\""
+type question_aggregate_fields {
+    avg: question_avg_fields
+    count(columns: [question_select_column!], distinct: Boolean): Int!
+    max: question_max_fields
+    min: question_min_fields
+    stddev: question_stddev_fields
+    stddev_pop: question_stddev_pop_fields
+    stddev_samp: question_stddev_samp_fields
+    sum: question_sum_fields
+    var_pop: question_var_pop_fields
+    var_samp: question_var_samp_fields
+    variance: question_variance_fields
+}
+
+"aggregate avg on columns"
+type question_avg_fields {
+    active: Float
+    id: Float
+    quiz_id: Float
+    sort: Float
+}
+
+"aggregate max on columns"
+type question_max_fields {
+    active: Int
+    id: Int
+    image: String
+    quiz_id: Int
+    sort: Int
+    title: String
+}
+
+"aggregate min on columns"
+type question_min_fields {
+    active: Int
+    id: Int
+    image: String
+    quiz_id: Int
+    sort: Int
+    title: String
+}
+
+"response of any mutation on the table \"question\""
+type question_mutation_response {
+    "number of rows affected by the mutation"
+    affected_rows: Int!
+    "data from the rows affected by the mutation"
+    returning: [question!]!
+}
+
+"aggregate stddev on columns"
+type question_stddev_fields {
+    active: Float
+    id: Float
+    quiz_id: Float
+    sort: Float
+}
+
+"aggregate stddev_pop on columns"
+type question_stddev_pop_fields {
+    active: Float
+    id: Float
+    quiz_id: Float
+    sort: Float
+}
+
+"aggregate stddev_samp on columns"
+type question_stddev_samp_fields {
+    active: Float
+    id: Float
+    quiz_id: Float
+    sort: Float
+}
+
+"aggregate sum on columns"
+type question_sum_fields {
+    active: Int
+    id: Int
+    quiz_id: Int
+    sort: Int
+}
+
+"aggregate var_pop on columns"
+type question_var_pop_fields {
+    active: Float
+    id: Float
+    quiz_id: Float
+    sort: Float
+}
+
+"aggregate var_samp on columns"
+type question_var_samp_fields {
+    active: Float
+    id: Float
+    quiz_id: Float
+    sort: Float
+}
+
+"aggregate variance on columns"
+type question_variance_fields {
+    active: Float
+    id: Float
+    quiz_id: Float
+    sort: Float
+}
+
+"columns and relationships of \"quiz\""
+type quiz {
+    active: Int
+    id: Int!
+    name: String
+    "An array relationship"
+    questions(
+        "distinct select on columns"
+        distinct_on: [question_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [question_order_by!],
+        "filter the rows returned"
+        where: question_bool_exp
+    ): [question!]!
+    "An aggregate relationship"
+    questions_aggregate(
+        "distinct select on columns"
+        distinct_on: [question_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [question_order_by!],
+        "filter the rows returned"
+        where: question_bool_exp
+    ): question_aggregate!
+    sort: Int
+    title: String
+    user_uid: String
+}
+
+"aggregated selection of \"quiz\""
+type quiz_aggregate {
+    aggregate: quiz_aggregate_fields
+    nodes: [quiz!]!
+}
+
+"aggregate fields of \"quiz\""
+type quiz_aggregate_fields {
+    avg: quiz_avg_fields
+    count(columns: [quiz_select_column!], distinct: Boolean): Int!
+    max: quiz_max_fields
+    min: quiz_min_fields
+    stddev: quiz_stddev_fields
+    stddev_pop: quiz_stddev_pop_fields
+    stddev_samp: quiz_stddev_samp_fields
+    sum: quiz_sum_fields
+    var_pop: quiz_var_pop_fields
+    var_samp: quiz_var_samp_fields
+    variance: quiz_variance_fields
+}
+
+"aggregate avg on columns"
+type quiz_avg_fields {
+    active: Float
+    id: Float
+    sort: Float
+}
+
+"aggregate max on columns"
+type quiz_max_fields {
+    active: Int
+    id: Int
+    name: String
+    sort: Int
+    title: String
+    user_uid: String
+}
+
+"aggregate min on columns"
+type quiz_min_fields {
+    active: Int
+    id: Int
+    name: String
+    sort: Int
+    title: String
+    user_uid: String
+}
+
+"response of any mutation on the table \"quiz\""
+type quiz_mutation_response {
+    "number of rows affected by the mutation"
+    affected_rows: Int!
+    "data from the rows affected by the mutation"
+    returning: [quiz!]!
+}
+
+"aggregate stddev on columns"
+type quiz_stddev_fields {
+    active: Float
+    id: Float
+    sort: Float
+}
+
+"aggregate stddev_pop on columns"
+type quiz_stddev_pop_fields {
+    active: Float
+    id: Float
+    sort: Float
+}
+
+"aggregate stddev_samp on columns"
+type quiz_stddev_samp_fields {
+    active: Float
+    id: Float
+    sort: Float
+}
+
+"aggregate sum on columns"
+type quiz_sum_fields {
+    active: Int
+    id: Int
+    sort: Int
+}
+
+"aggregate var_pop on columns"
+type quiz_var_pop_fields {
+    active: Float
+    id: Float
+    sort: Float
+}
+
+"aggregate var_samp on columns"
+type quiz_var_samp_fields {
+    active: Float
+    id: Float
+    sort: Float
+}
+
+"aggregate variance on columns"
+type quiz_variance_fields {
+    active: Float
+    id: Float
+    sort: Float
+}
+
+type subscription_root {
+    "fetch data from the table: \"answer\""
+    answer(
+        "distinct select on columns"
+        distinct_on: [answer_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [answer_order_by!],
+        "filter the rows returned"
+        where: answer_bool_exp
+    ): [answer!]!
+    "fetch aggregated fields from the table: \"answer\""
+    answer_aggregate(
+        "distinct select on columns"
+        distinct_on: [answer_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [answer_order_by!],
+        "filter the rows returned"
+        where: answer_bool_exp
+    ): answer_aggregate!
+    "fetch data from the table: \"answer\" using primary key columns"
+    answer_by_pk(id: Int!, question_id: Int!, question_quiz_id: Int!): answer
+    "fetch data from the table: \"question\""
+    question(
+        "distinct select on columns"
+        distinct_on: [question_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [question_order_by!],
+        "filter the rows returned"
+        where: question_bool_exp
+    ): [question!]!
+    "fetch aggregated fields from the table: \"question\""
+    question_aggregate(
+        "distinct select on columns"
+        distinct_on: [question_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [question_order_by!],
+        "filter the rows returned"
+        where: question_bool_exp
+    ): question_aggregate!
+    "fetch data from the table: \"question\" using primary key columns"
+    question_by_pk(id: Int!, quiz_id: Int!): question
+    "fetch data from the table: \"quiz\""
+    quiz(
+        "distinct select on columns"
+        distinct_on: [quiz_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [quiz_order_by!],
+        "filter the rows returned"
+        where: quiz_bool_exp
+    ): [quiz!]!
+    "fetch aggregated fields from the table: \"quiz\""
+    quiz_aggregate(
+        "distinct select on columns"
+        distinct_on: [quiz_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [quiz_order_by!],
+        "filter the rows returned"
+        where: quiz_bool_exp
+    ): quiz_aggregate!
+    "fetch data from the table: \"quiz\" using primary key columns"
+    quiz_by_pk(id: Int!): quiz
+}
+
+"unique or primary key constraints on table \"answer\""
+enum answer_constraint {
+    "unique or primary key constraint"
+    answer_pkey
+}
+
+"select columns of table \"answer\""
+enum answer_select_column {
+    "column name"
+    id
+    "column name"
+    image
+    "column name"
+    is_right
+    "column name"
+    question_id
+    "column name"
+    question_quiz_id
+    "column name"
+    title
+}
+
+"update columns of table \"answer\""
+enum answer_update_column {
+    "column name"
+    id
+    "column name"
+    image
+    "column name"
+    is_right
+    "column name"
+    question_id
+    "column name"
+    question_quiz_id
+    "column name"
+    title
+}
+
+"column ordering options"
+enum order_by {
+    "in ascending order, nulls last"
+    asc
+    "in ascending order, nulls first"
+    asc_nulls_first
+    "in ascending order, nulls last"
+    asc_nulls_last
+    "in descending order, nulls first"
+    desc
+    "in descending order, nulls first"
+    desc_nulls_first
+    "in descending order, nulls last"
+    desc_nulls_last
+}
+
+"unique or primary key constraints on table \"question\""
+enum question_constraint {
+    "unique or primary key constraint"
+    question_pkey
+}
+
+"select columns of table \"question\""
+enum question_select_column {
+    "column name"
+    active
+    "column name"
+    id
+    "column name"
+    image
+    "column name"
+    quiz_id
+    "column name"
+    sort
+    "column name"
+    title
+}
+
+"update columns of table \"question\""
+enum question_update_column {
+    "column name"
+    active
+    "column name"
+    id
+    "column name"
+    image
+    "column name"
+    quiz_id
+    "column name"
+    sort
+    "column name"
+    title
+}
+
+"unique or primary key constraints on table \"quiz\""
+enum quiz_constraint {
+    "unique or primary key constraint"
+    quiz_pkey
+}
+
+"select columns of table \"quiz\""
+enum quiz_select_column {
+    "column name"
+    active
+    "column name"
+    id
+    "column name"
+    name
+    "column name"
+    sort
+    "column name"
+    title
+    "column name"
+    user_uid
+}
+
+"update columns of table \"quiz\""
+enum quiz_update_column {
+    "column name"
+    active
+    "column name"
+    id
+    "column name"
+    name
+    "column name"
+    sort
+    "column name"
+    title
+    "column name"
+    user_uid
+}
+
+"Boolean expression to compare columns of type \"Int\". All fields are combined with logical 'AND'."
+input Int_comparison_exp {
+    _eq: Int
+    _gt: Int
+    _gte: Int
+    _in: [Int!]
+    _is_null: Boolean
+    _lt: Int
+    _lte: Int
+    _neq: Int
+    _nin: [Int!]
+}
+
+"Boolean expression to compare columns of type \"String\". All fields are combined with logical 'AND'."
+input String_comparison_exp {
+    _eq: String
+    _gt: String
+    _gte: String
+    "does the column match the given case-insensitive pattern"
+    _ilike: String
+    _in: [String!]
+    "does the column match the given POSIX regular expression, case insensitive"
+    _iregex: String
+    _is_null: Boolean
+    "does the column match the given pattern"
+    _like: String
+    _lt: String
+    _lte: String
+    _neq: String
+    "does the column NOT match the given case-insensitive pattern"
+    _nilike: String
+    _nin: [String!]
+    "does the column NOT match the given POSIX regular expression, case insensitive"
+    _niregex: String
+    "does the column NOT match the given pattern"
+    _nlike: String
+    "does the column NOT match the given POSIX regular expression, case sensitive"
+    _nregex: String
+    "does the column NOT match the given SQL regular expression"
+    _nsimilar: String
+    "does the column match the given POSIX regular expression, case sensitive"
+    _regex: String
+    "does the column match the given SQL regular expression"
+    _similar: String
+}
+
+"order by aggregate values of table \"answer\""
+input answer_aggregate_order_by {
+    avg: answer_avg_order_by
+    count: order_by
+    max: answer_max_order_by
+    min: answer_min_order_by
+    stddev: answer_stddev_order_by
+    stddev_pop: answer_stddev_pop_order_by
+    stddev_samp: answer_stddev_samp_order_by
+    sum: answer_sum_order_by
+    var_pop: answer_var_pop_order_by
+    var_samp: answer_var_samp_order_by
+    variance: answer_variance_order_by
+}
+
+"input type for inserting array relation for remote table \"answer\""
+input answer_arr_rel_insert_input {
+    data: [answer_insert_input!]!
+    "on conflict condition"
+    on_conflict: answer_on_conflict
+}
+
+"order by avg() on columns of table \"answer\""
+input answer_avg_order_by {
+    id: order_by
+    is_right: order_by
+    question_id: order_by
+    question_quiz_id: order_by
+}
+
+"Boolean expression to filter rows from the table \"answer\". All fields are combined with a logical 'AND'."
+input answer_bool_exp {
+    _and: [answer_bool_exp!]
+    _not: answer_bool_exp
+    _or: [answer_bool_exp!]
+    id: Int_comparison_exp
+    image: String_comparison_exp
+    is_right: Int_comparison_exp
+    question: question_bool_exp
+    question_id: Int_comparison_exp
+    question_quiz_id: Int_comparison_exp
+    title: String_comparison_exp
+}
+
+"input type for incrementing numeric columns in table \"answer\""
+input answer_inc_input {
+    id: Int
+    is_right: Int
+    question_id: Int
+    question_quiz_id: Int
+}
+
+"input type for inserting data into table \"answer\""
+input answer_insert_input {
+    id: Int
+    image: String
+    is_right: Int
+    question: question_obj_rel_insert_input
+    question_id: Int
+    question_quiz_id: Int
+    title: String
+}
+
+"order by max() on columns of table \"answer\""
+input answer_max_order_by {
+    id: order_by
+    image: order_by
+    is_right: order_by
+    question_id: order_by
+    question_quiz_id: order_by
+    title: order_by
+}
+
+"order by min() on columns of table \"answer\""
+input answer_min_order_by {
+    id: order_by
+    image: order_by
+    is_right: order_by
+    question_id: order_by
+    question_quiz_id: order_by
+    title: order_by
+}
+
+"on conflict condition type for table \"answer\""
+input answer_on_conflict {
+    constraint: answer_constraint!
+    update_columns: [answer_update_column!]! = []
+    where: answer_bool_exp
+}
+
+"Ordering options when selecting data from \"answer\"."
+input answer_order_by {
+    id: order_by
+    image: order_by
+    is_right: order_by
+    question: question_order_by
+    question_id: order_by
+    question_quiz_id: order_by
+    title: order_by
+}
+
+"primary key columns input for table: answer"
+input answer_pk_columns_input {
+    id: Int!
+    question_id: Int!
+    question_quiz_id: Int!
+}
+
+"input type for updating data in table \"answer\""
+input answer_set_input {
+    id: Int
+    image: String
+    is_right: Int
+    question_id: Int
+    question_quiz_id: Int
+    title: String
+}
+
+"order by stddev() on columns of table \"answer\""
+input answer_stddev_order_by {
+    id: order_by
+    is_right: order_by
+    question_id: order_by
+    question_quiz_id: order_by
+}
+
+"order by stddev_pop() on columns of table \"answer\""
+input answer_stddev_pop_order_by {
+    id: order_by
+    is_right: order_by
+    question_id: order_by
+    question_quiz_id: order_by
+}
+
+"order by stddev_samp() on columns of table \"answer\""
+input answer_stddev_samp_order_by {
+    id: order_by
+    is_right: order_by
+    question_id: order_by
+    question_quiz_id: order_by
+}
+
+"order by sum() on columns of table \"answer\""
+input answer_sum_order_by {
+    id: order_by
+    is_right: order_by
+    question_id: order_by
+    question_quiz_id: order_by
+}
+
+"order by var_pop() on columns of table \"answer\""
+input answer_var_pop_order_by {
+    id: order_by
+    is_right: order_by
+    question_id: order_by
+    question_quiz_id: order_by
+}
+
+"order by var_samp() on columns of table \"answer\""
+input answer_var_samp_order_by {
+    id: order_by
+    is_right: order_by
+    question_id: order_by
+    question_quiz_id: order_by
+}
+
+"order by variance() on columns of table \"answer\""
+input answer_variance_order_by {
+    id: order_by
+    is_right: order_by
+    question_id: order_by
+    question_quiz_id: order_by
+}
+
+"order by aggregate values of table \"question\""
+input question_aggregate_order_by {
+    avg: question_avg_order_by
+    count: order_by
+    max: question_max_order_by
+    min: question_min_order_by
+    stddev: question_stddev_order_by
+    stddev_pop: question_stddev_pop_order_by
+    stddev_samp: question_stddev_samp_order_by
+    sum: question_sum_order_by
+    var_pop: question_var_pop_order_by
+    var_samp: question_var_samp_order_by
+    variance: question_variance_order_by
+}
+
+"input type for inserting array relation for remote table \"question\""
+input question_arr_rel_insert_input {
+    data: [question_insert_input!]!
+    "on conflict condition"
+    on_conflict: question_on_conflict
+}
+
+"order by avg() on columns of table \"question\""
+input question_avg_order_by {
+    active: order_by
+    id: order_by
+    quiz_id: order_by
+    sort: order_by
+}
+
+"Boolean expression to filter rows from the table \"question\". All fields are combined with a logical 'AND'."
+input question_bool_exp {
+    _and: [question_bool_exp!]
+    _not: question_bool_exp
+    _or: [question_bool_exp!]
+    active: Int_comparison_exp
+    answers: answer_bool_exp
+    id: Int_comparison_exp
+    image: String_comparison_exp
+    quiz: quiz_bool_exp
+    quiz_id: Int_comparison_exp
+    sort: Int_comparison_exp
+    title: String_comparison_exp
+}
+
+"input type for incrementing numeric columns in table \"question\""
+input question_inc_input {
+    active: Int
+    id: Int
+    quiz_id: Int
+    sort: Int
+}
+
+"input type for inserting data into table \"question\""
+input question_insert_input {
+    active: Int
+    answers: answer_arr_rel_insert_input
+    id: Int
+    image: String
+    quiz: quiz_obj_rel_insert_input
+    quiz_id: Int
+    sort: Int
+    title: String
+}
+
+"order by max() on columns of table \"question\""
+input question_max_order_by {
+    active: order_by
+    id: order_by
+    image: order_by
+    quiz_id: order_by
+    sort: order_by
+    title: order_by
+}
+
+"order by min() on columns of table \"question\""
+input question_min_order_by {
+    active: order_by
+    id: order_by
+    image: order_by
+    quiz_id: order_by
+    sort: order_by
+    title: order_by
+}
+
+"input type for inserting object relation for remote table \"question\""
+input question_obj_rel_insert_input {
+    data: question_insert_input!
+    "on conflict condition"
+    on_conflict: question_on_conflict
+}
+
+"on conflict condition type for table \"question\""
+input question_on_conflict {
+    constraint: question_constraint!
+    update_columns: [question_update_column!]! = []
+    where: question_bool_exp
+}
+
+"Ordering options when selecting data from \"question\"."
+input question_order_by {
+    active: order_by
+    answers_aggregate: answer_aggregate_order_by
+    id: order_by
+    image: order_by
+    quiz: quiz_order_by
+    quiz_id: order_by
+    sort: order_by
+    title: order_by
+}
+
+"primary key columns input for table: question"
+input question_pk_columns_input {
+    id: Int!
+    quiz_id: Int!
+}
+
+"input type for updating data in table \"question\""
+input question_set_input {
+    active: Int
+    id: Int
+    image: String
+    quiz_id: Int
+    sort: Int
+    title: String
+}
+
+"order by stddev() on columns of table \"question\""
+input question_stddev_order_by {
+    active: order_by
+    id: order_by
+    quiz_id: order_by
+    sort: order_by
+}
+
+"order by stddev_pop() on columns of table \"question\""
+input question_stddev_pop_order_by {
+    active: order_by
+    id: order_by
+    quiz_id: order_by
+    sort: order_by
+}
+
+"order by stddev_samp() on columns of table \"question\""
+input question_stddev_samp_order_by {
+    active: order_by
+    id: order_by
+    quiz_id: order_by
+    sort: order_by
+}
+
+"order by sum() on columns of table \"question\""
+input question_sum_order_by {
+    active: order_by
+    id: order_by
+    quiz_id: order_by
+    sort: order_by
+}
+
+"order by var_pop() on columns of table \"question\""
+input question_var_pop_order_by {
+    active: order_by
+    id: order_by
+    quiz_id: order_by
+    sort: order_by
+}
+
+"order by var_samp() on columns of table \"question\""
+input question_var_samp_order_by {
+    active: order_by
+    id: order_by
+    quiz_id: order_by
+    sort: order_by
+}
+
+"order by variance() on columns of table \"question\""
+input question_variance_order_by {
+    active: order_by
+    id: order_by
+    quiz_id: order_by
+    sort: order_by
+}
+
+"Boolean expression to filter rows from the table \"quiz\". All fields are combined with a logical 'AND'."
+input quiz_bool_exp {
+    _and: [quiz_bool_exp!]
+    _not: quiz_bool_exp
+    _or: [quiz_bool_exp!]
+    active: Int_comparison_exp
+    id: Int_comparison_exp
+    name: String_comparison_exp
+    questions: question_bool_exp
+    sort: Int_comparison_exp
+    title: String_comparison_exp
+    user_uid: String_comparison_exp
+}
+
+"input type for incrementing numeric columns in table \"quiz\""
+input quiz_inc_input {
+    active: Int
+    id: Int
+    sort: Int
+}
+
+"input type for inserting data into table \"quiz\""
+input quiz_insert_input {
+    active: Int
+    id: Int
+    name: String
+    questions: question_arr_rel_insert_input
+    sort: Int
+    title: String
+    user_uid: String
+}
+
+"input type for inserting object relation for remote table \"quiz\""
+input quiz_obj_rel_insert_input {
+    data: quiz_insert_input!
+    "on conflict condition"
+    on_conflict: quiz_on_conflict
+}
+
+"on conflict condition type for table \"quiz\""
+input quiz_on_conflict {
+    constraint: quiz_constraint!
+    update_columns: [quiz_update_column!]! = []
+    where: quiz_bool_exp
+}
+
+"Ordering options when selecting data from \"quiz\"."
+input quiz_order_by {
+    active: order_by
+    id: order_by
+    name: order_by
+    questions_aggregate: question_aggregate_order_by
+    sort: order_by
+    title: order_by
+    user_uid: order_by
+}
+
+"primary key columns input for table: quiz"
+input quiz_pk_columns_input {
+    id: Int!
+}
+
+"input type for updating data in table \"quiz\""
+input quiz_set_input {
+    active: Int
+    id: Int
+    name: String
+    sort: Int
+    title: String
+    user_uid: String
+}

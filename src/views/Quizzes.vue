@@ -1,10 +1,9 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <QuizzesList/>
 </template>
 
 <script setup lang="ts">
 
 
+import QuizzesList from '@/components/quizzes/QuizzesList.vue';
 </script>
