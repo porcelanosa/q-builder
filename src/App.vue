@@ -23,7 +23,6 @@ import NavBar from './components/NavBar.vue';
 // Apollo settings
 const HasuraURL = import.meta.env.VITE_HASURA_URL;
 const HasuraToken = import.meta.env.VITE_HASURA_TOKEN;
-console.log('###', HasuraToken);
 const httpLink = new HttpLink({
   uri: HasuraURL,
   headers: {

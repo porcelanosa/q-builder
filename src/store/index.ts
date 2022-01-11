@@ -1,6 +1,16 @@
-import { createStore } from 'vuex';
+import { createStore, createLogger } from 'vuex';
+import createPersistedState from 'vuex-persistedstate';
+
+
+// Plug in logger when in development environment
+const debug = import.meta.env.MODE !== 'production';
+const plugins = debug ? [createLogger({})] : [];
+
+// Plug in session storage based persistence
+plugins.push(createPersistedState({ storage: window.sessionStorage }));
 
 export default createStore({
+  plugins,
   state: {
     userUid: null,
     userEmail: null
