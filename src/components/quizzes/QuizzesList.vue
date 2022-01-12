@@ -1,10 +1,17 @@
 <template>
   <div v-if="loading">Loading...</div>
-  <ul v-else-if="quizzes && quizzes">
-    <li v-for="quiz of quizzes" :key="quiz.id">
-      {{ quiz.name }} {{ quiz.title }}
-    </li>
-  </ul>
+  <div v-else-if="quizzes">
+    <el-table :data="quizzes" style="width: 100%">
+      <el-table-column prop="name" label="Name" width="120" />
+      <el-table-column prop="title" label="Title" />
+      <el-table-column fixed="right" label="Operations" width="120">
+        <template #default>
+          <el-button type="success" :icon="Edit" circle/>
+          <el-button type="danger" :icon="Delete" circle/>
+        </template>
+      </el-table-column>
+    </el-table>
+  </div>
   <el-button @click="reloadQuizzes" type="success">Reload</el-button>
 </template>
 
@@ -13,8 +20,11 @@ import {computed, onMounted, ref} from 'vue';
 import {useRouter} from 'vue-router'; // import router
 import {useStore} from 'vuex';
 import {useQuery, useResult} from '@vue/apollo-composable';
-import gql from 'graphql-tag';
+import { GET_QUIZZES } from '@/queries/getQuizzesList';
+
 import {
+  Edit,
+  Delete,
   Location,
   Document,
   Menu as IconMenu,
@@ -25,13 +35,6 @@ const router = useRouter();
 const store = useStore();
 
 const userUid = computed(() => store.getters['GET_USER_UID']);
-const GET_QUIZZES = gql`
-      query GetGuizesListQuery ($userUid: String!) {
-        quiz(where: {user_uid: {_eq: $userUid}}) {
-            id
-            name
-            title
-        }}`;
 
 const {result, loading, refetch, error} = useQuery(GET_QUIZZES, {"userUid": userUid});
 const quizzes = useResult(result);

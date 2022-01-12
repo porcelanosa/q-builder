@@ -5,11 +5,7 @@ import store from "./store";
 import ElementPlus from 'element-plus';
 import './assets/css/main.scss';
 import 'element-plus/dist/index.css';
-// import vuetify from './plugins/vuetify';
 import { initializeApp } from 'firebase/app';
-/*import { loadFonts } from './plugins/webfontloader';
-
-loadFonts();*/
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FB_API_KEY,
