@@ -1288,6 +1288,13 @@ input quiz_insert_input {
     user_uid: String
 }
 
+"input type for inserting data into table \"quiz\""
+input quiz_new_input {
+    name: String
+    title: String
+    user_uid: String
+}
+
 "input type for inserting object relation for remote table \"quiz\""
 input quiz_obj_rel_insert_input {
     data: quiz_insert_input!
